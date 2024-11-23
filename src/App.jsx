@@ -31,6 +31,31 @@ function App() {
 
   const handleGraduatedInput = (e) => setGraduated(e.target.checked);
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    const newStudent = {
+      fullName: fullName,
+      email: email,
+      phone: phone,
+      program: program,
+      image: image,
+      graduationYear: graduationYear,
+      graduated: graduated
+    };
+    
+    setStudents([newStudent, ...students]);
+    
+    // Limpiar el formulario
+    setFullName('');
+    setEmail('');
+    setPhone('');
+    setProgram('');
+    setImage('');
+    setGraduationYear('');
+    setGraduated(false);
+  }
+
   return (
     <div className="App pt-20">
       <Navbar />
@@ -91,7 +116,7 @@ function App() {
             <input name="graduated" type="checkbox" checked={graduated} onChange={handleGraduatedInput} />
           </label>
 
-          <button type="submit">Add Student</button>
+          <button type="submit" onSubmit={handleSubmit} >Add Student</button>
         </div>
 
       </form>
